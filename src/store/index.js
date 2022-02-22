@@ -3,9 +3,12 @@ import Vuex from 'vuex'
 
 Vue.use(Vuex)
 
+const state={
+  website:{name:'NJTU MC'}
+}
+
 export default new Vuex.Store({
-  state: {
-  },
+  state,
   mutations: {
   },
   actions: {
