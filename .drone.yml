@@ -1,0 +1,61 @@
+---
+kind: pipeline
+type: docker
+name: fiber-frontend
+
+steps:
+  - name: restore-cache
+    image: drillster/drone-volume-cache:latest
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      restore: true
+      mount:
+        - ./node_modules
+  - name: install
+    image: node:lts-bullseye
+    commands:
+      - npm i
+  - name: rebuild-cache
+    image: drillster/drone-volume-cache:latest
+    volumes:
+      - name: cache
+        path: /cache
+    settings:
+      rebuild: true
+      mount:
+        - ./node_modules
+  - name: build
+    image: node:lts-bullseye
+    commands:
+      - npm run build
+  - name: publish
+    image: plugins/docker:latest
+    settings:
+      dockerfile: Dockerfile
+      tag:
+        - latest
+        - ${DRONE_BUILD_NUMBER}
+      username:
+        from_secret: docker_username
+      password:
+        from_secret: docker_password
+      registry: https://harbor.jinhun.moe
+      repo: harbor.jinhun.moe/library/njtech-mc-frontend
+  - name: deploy
+    image: harbor.jinhun.moe/library/depoly:latest
+    settings:
+      host:
+        from_secret: depoly_host
+      username: 
+        from_secret: depoly_username
+      key:
+        from_secret: depoly_key
+      script:
+        from_secret: depoly_script
+
+volumes:
+  - name: cache
+    host:
+      path: /tmp/cache
