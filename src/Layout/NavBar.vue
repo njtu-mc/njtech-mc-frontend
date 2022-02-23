@@ -2,12 +2,12 @@
   <Menu class="nav" mode="horizontal" theme="dark">
     <a href="#/"><span class="logo">{{ this.$store.state.website.name }}</span></a>
     <span style="float: right">
-    <Submenu>
-      <template slot="title">
-        <myAvatar uuid="3bd308a21c724fcf8e0cf8a3dad2072c" size="63"></myAvatar>
-      </template>
-      <MenuItem>个人主页</MenuItem>
-    </Submenu>
+      <Submenu>
+        <template slot="title">
+          <myAvatar uuid="6e0f9028bf914fa58580e02d10eaeae6"></myAvatar>
+        </template>
+        <MenuItem>个人主页</MenuItem>
+      </Submenu>
     </span>
   </Menu>
 </template>

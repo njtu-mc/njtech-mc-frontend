@@ -1,18 +1,18 @@
 <template>
-<div :style="getCss" class="my-avatar">
-  <img :src="this.src" :style="getCss">
-</div>
+  <span>
+    <Avatar :src="src" size="55"></Avatar>
+  </span>
 </template>
 
 <script>
 export default {
-  name: "Avatar",
-  props:['uuid','size'],
+  name: "myAvatar",
+  props:['uuid'],
   computed:{
     getCss(){
       return {
-        width:this.size+'px',
-        height:this.size+'px',
+//        width:this.size+'px',
+//        height:this.size+'px',
         display:'inline'
       }
     },
@@ -24,5 +24,8 @@ export default {
 </script>
 
 <style scoped>
-
+.logo{
+  border: solid 1px black;
+  border-radius: 50%;
+}
 </style>
