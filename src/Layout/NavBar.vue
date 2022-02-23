@@ -1,23 +1,44 @@
 <template>
   <Menu class="nav" mode="horizontal" theme="dark">
-    <a href="#/"><span class="logo">{{ this.$store.state.website.name }}</span></a>
-    <span style="float: right">
-      <Submenu>
+    <a @click="goHome"><span class="logo">{{ this.$store.state.website.name }}</span></a>
+    <span class="avatar">
+      <Submenu name="self" appear="false" v-if="get_uuid!==0">
+        <Drop transfer="true"></Drop>
         <template slot="title">
-          <myAvatar uuid="6e0f9028bf914fa58580e02d10eaeae6"></myAvatar>
+          <myAvatar :uuid="get_uuid"></myAvatar>
         </template>
-        <MenuItem>个人主页</MenuItem>
+        <MenuItem name="home" to="/home">个人主页</MenuItem>
+        <MenuItem disabled="true" name="more">待开发</MenuItem>
+        <MenuItem name="logout">登出</MenuItem>
       </Submenu>
+      <Button @click="login" v-else>login</Button>
     </span>
   </Menu>
 </template>
 
 <script>
 import myAvatar from "../components/myAvatar";
-
 export default {
   name: "NavBar",
-  components: {myAvatar}
+  components: {myAvatar},
+  data(){
+    return {
+      hadLogin:false
+    }
+  },
+  methods:{
+    goHome(){
+      this.$router.push('/')
+    },
+    login(){
+      window.location.href= "https://login.live.com/oauth20_authorize.srf?client_id=123d3926-039e-4a40-833a-fecb0cd1c86e&response_type=code&redirect_uri=https://api.njtumc.org/auth&scope=XboxLive.signin%20offline_access"
+    }
+  },
+  computed:{
+    get_uuid(){
+      return this.$store.state.user.mc_id
+    }
+  }
 }
 </script>
 
@@ -30,7 +51,9 @@ export default {
   color: #00000000;
   -webkit-background-clip: text;
 }
-
+.avatar{
+  float: right;
+}
 i {
   color: #515a6e
 }

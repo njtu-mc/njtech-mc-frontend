@@ -1,30 +1,23 @@
 <template>
   <span>
-    <Avatar :src="src" size="55"></Avatar>
+    <Avatar :src="getUrl" size="55"></Avatar>
   </span>
 </template>
 
 <script>
+import {getAvatar} from "../utils/getImg";
+
 export default {
   name: "myAvatar",
-  props:['uuid'],
-  computed:{
-    getCss(){
-      return {
-//        width:this.size+'px',
-//        height:this.size+'px',
-        display:'inline'
-      }
-    },
-    src(){
-      return 'https://crafatar.com/renders/head/'+this.uuid
-    }
+  props: ['uuid'],
+  computed: {
+    getUrl: () => getAvatar()
   }
 }
 </script>
 
 <style scoped>
-.logo{
+.logo {
   border: solid 1px black;
   border-radius: 50%;
 }
