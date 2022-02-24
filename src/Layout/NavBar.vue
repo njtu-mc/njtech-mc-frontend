@@ -3,15 +3,14 @@
     <a @click="goHome"><span class="logo">{{ this.$store.state.website.name }}</span></a>
     <span class="avatar">
       <Submenu name="self" appear="false" v-if="get_uuid!==0">
-        <Drop transfer="true"></Drop>
         <template slot="title">
           <myAvatar :uuid="get_uuid"></myAvatar>
         </template>
-        <MenuItem name="home" to="/home">个人主页</MenuItem>
-        <MenuItem disabled="true" name="more">待开发</MenuItem>
+        <MenuItem name="profile" to="/profile">个人主页</MenuItem>
+        <MenuItem :disabled="true" name="more">待开发</MenuItem>
         <MenuItem name="logout">登出</MenuItem>
       </Submenu>
-      <Button @click="login" v-else>login</Button>
+      <Button @click="login" v-else>登录</Button>
     </span>
   </Menu>
 </template>
