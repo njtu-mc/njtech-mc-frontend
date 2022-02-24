@@ -17,32 +17,34 @@
 
 <script>
 import myAvatar from "../components/myAvatar";
+
 export default {
   name: "NavBar",
   components: {myAvatar},
-  data(){
+  data() {
     return {
-      hadLogin:false,
-      loading:false
+      hadLogin: false,
+      loading: false
     }
   },
-  methods:{
-    goHome(){
+  methods: {
+    goHome() {
       this.$router.push('/')
     },
-    login(){
-
-      window.location.href= "https://login.live.com/oauth20_authorize.srf?client_id=123d3926-039e-4a40-833a-fecb0cd1c86e&response_type=code&redirect_uri=https://api.njtumc.org/auth&scope=XboxLive.signin%20offline_access"
+    login() {
+      this.loading = true
+      window.location.href = "https://login.live.com/oauth20_authorize.srf?client_id=123d3926-039e-4a40-833a-fecb0cd1c86e&response_type=code&redirect_uri=https://api.njtumc.org/auth&scope=XboxLive.signin%20offline_access"
     },
     logout() {
       this.$store.dispatch('user/logout')
+      this.$router.replace('/')
     },
-    handleSelect(name){
-      if(name==='logout') this.logout()
+    handleSelect(name) {
+      if (name === 'logout') this.logout()
     }
   },
-  computed:{
-    get_uuid(){
+  computed: {
+    get_uuid() {
       return this.$store.state.user.mc_id
     }
   }
@@ -58,9 +60,11 @@ export default {
   color: #00000000;
   -webkit-background-clip: text;
 }
-.avatar{
+
+.avatar {
   float: right;
 }
+
 i {
   color: #515a6e
 }
