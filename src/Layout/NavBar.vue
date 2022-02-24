@@ -1,5 +1,5 @@
 <template>
-  <Menu class="nav" mode="horizontal" theme="dark">
+  <Menu class="nav" mode="horizontal" theme="dark" @on-select="handleSelect" active-name="">
     <a @click="goHome"><span class="logo">{{ this.$store.state.website.name }}</span></a>
     <span class="avatar">
       <Submenu name="self" appear="false" v-if="get_uuid!==0">
@@ -8,9 +8,9 @@
         </template>
         <MenuItem name="profile" to="/profile">个人主页</MenuItem>
         <MenuItem :disabled="true" name="more">待开发</MenuItem>
-        <MenuItem name="logout">登出</MenuItem>
+        <MenuItem name="logout" @click="logout">登出</MenuItem>
       </Submenu>
-      <Button @click="login" v-else>登录</Button>
+      <Button @click="login" :loading="loading" v-else>登录</Button>
     </span>
   </Menu>
 </template>
@@ -22,7 +22,8 @@ export default {
   components: {myAvatar},
   data(){
     return {
-      hadLogin:false
+      hadLogin:false,
+      loading:false
     }
   },
   methods:{
@@ -30,7 +31,14 @@ export default {
       this.$router.push('/')
     },
     login(){
+
       window.location.href= "https://login.live.com/oauth20_authorize.srf?client_id=123d3926-039e-4a40-833a-fecb0cd1c86e&response_type=code&redirect_uri=https://api.njtumc.org/auth&scope=XboxLive.signin%20offline_access"
+    },
+    logout() {
+      this.$store.dispatch('user/logout')
+    },
+    handleSelect(name){
+      if(name==='logout') this.logout()
     }
   },
   computed:{

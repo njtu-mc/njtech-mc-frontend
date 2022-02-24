@@ -15,6 +15,9 @@ export default {
   components: {Buttons},
   computed:{
     getUrl:()=>getBodyImg()
+  },
+  mounted() {
+
   }
 }
 </script>

@@ -1,4 +1,4 @@
-import {getInfo} from "../../api/user";
+import {getInfo, logout} from "../../api/user";
 
 const state = {
     mc_id: 0,
@@ -23,20 +23,28 @@ const mutations = {
 const actions = {
     getInfo({commit}) {
         return new Promise((resolve, reject) => {
-            getInfo().then(res=>{
-                const {mc_id,mc_name}=res
-                console.log(mc_id,mc_name)
-                commit('SET_MC_ID',mc_id)
-                commit('SET_MC_NAME',mc_name)
+            getInfo().then(res => {
+                const {mc_id, mc_name} = res
+                commit('SET_MC_ID', mc_id)
+                commit('SET_MC_NAME', mc_name)
                 resolve(res)
-            }).catch(err=>{
+            }).catch(err => {
                 reject(err)
             })
+        })
+    },
+    logout({commit}) {
+        return new Promise((resolve, reject) => {
+            logout().then(() => {
+                commit('SET_MC_ID', 0)
+                commit('SET_MC_NAME', '')
+                resolve()
+            }).catch(() => reject())
         })
     }
 }
 export default {
-    namespaced:true,
+    namespaced: true,
     state,
     mutations,
     actions
