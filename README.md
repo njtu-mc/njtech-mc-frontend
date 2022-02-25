@@ -1,24 +1,11 @@
-# njtech-mc-frontend
+#  南京工业大学 mc 管理系统前台👻 
 
-## Project setup
-```
-yarn install
-```
+[![Build Status](https://drone.jinhun.moe/api/badges/NGUAlexZhang/njtech-mc-frontend/status.svg)](https://drone.jinhun.moe/NGUAlexZhang/njtech-mc-frontend)
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+## 前端地址
+  - https://njtumc.org
 
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+## 主要功能
+  - 通过微软OAuth登录，以及通过南工统一验证或南工大邮箱验证身份
+  - 自动将通过验证的账号加入服务器白名单
+  - （更多功能持续开发中）
