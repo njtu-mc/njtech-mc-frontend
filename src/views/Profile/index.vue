@@ -2,7 +2,8 @@
 <div class="grid-box">
   <div><img :src="getUrl"></div>
   <div class="main">
-    <buttons></buttons>
+    <buttons v-if="noName"></buttons>
+    <IdCard v-else></IdCard>
   </div>
 </div>
 </template>
@@ -10,11 +11,16 @@
 <script>
 import {getBodyImg} from "../../utils/getImg";
 import Buttons from "./buttons";
+import IdCard from "./IdCard";
 export default {
   name: "index",
-  components: {Buttons},
+  components: {IdCard, Buttons},
   computed:{
-    getUrl:()=>getBodyImg()
+    getUrl:()=>getBodyImg(),
+    noName(){
+//      console.log(this.$store.state.user.name===null)
+      return this.$store.state.user.name===null||this.$store.state.user.name===''
+    }
   },
   mounted() {
 

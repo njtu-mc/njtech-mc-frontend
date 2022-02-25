@@ -5,7 +5,7 @@
       <Button size="large">邮箱认证</Button>
     </div>
     <div class="btn-box">
-      <Button size="large" @click="injtech">智慧南工统一认证</Button>
+      <Button size="large" @click="injtech" :loading="is_loading">智慧南工统一认证</Button>
     </div>
   </div>
 </template>
@@ -14,22 +14,25 @@
 export default {
   name: "buttons",
   data() {
-    return {}
+    return {
+      is_loading: false
+    }
   },
   methods: {
     injtech() {
+      this.is_loading = true
       this.$Modal.confirm({
         title: '特别提醒',
         content: '<p>此操作需要在校园网络下进行，并且请使用自己的智慧南工登录校园网，请确定您的网络状态是否符合条件</p>',
         okText: '确定好了',
-        cancelText: '我再回去瞅瞅'
+        cancelText: '我再回去瞅瞅',
+        onOk() {
+          window.location.href = 'https://api.njtumc.org/api/user/authorize'
+        },
+        onCancel() {
+          this.is_loading = false
+        }
       })
-    },
-    ok() {
-
-    },
-    cancel() {
-
     }
   }
 }

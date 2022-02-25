@@ -4,7 +4,9 @@ const state = {
     mc_id: 0,
     mc_name: '',
     name: '',
-    email: ''
+    email: '',
+    gender: 0,
+    school: ''
 }
 const mutations = {
     SET_MC_ID(state, mc_id) {
@@ -18,15 +20,25 @@ const mutations = {
     },
     SET_EMAIL(state, email) {
         state.email = email
+    },
+    SET_GENDER(state, gender) {
+        state.gender = gender
+    },
+    SET_SCHOOL(state, school) {
+        state.school = school
     }
 }
 const actions = {
     getInfo({commit}) {
         return new Promise((resolve, reject) => {
             getInfo().then(res => {
-                const {mc_id, mc_name} = res
+                const {mc_id, mc_name, name, gender, email, school} = res
                 commit('SET_MC_ID', mc_id)
                 commit('SET_MC_NAME', mc_name)
+                commit('SET_NAME', name)
+                commit('SET_GENDER', gender)
+                commit('SET_EMAIL', email)
+                commit('SET_SCHOOL', school)
                 resolve(res)
             }).catch(err => {
                 reject(err)
@@ -38,6 +50,9 @@ const actions = {
             logout().then(() => {
                 commit('SET_MC_ID', 0)
                 commit('SET_MC_NAME', '')
+                commit('SET_NAME', '')
+                commit('SET_GENDER', 0)
+                commit('SET_EMAIL', '')
                 resolve()
             }).catch(() => reject())
         })

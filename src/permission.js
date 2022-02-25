@@ -8,9 +8,8 @@ router.beforeEach(async (to, from, next) => {
     NProgress.start()
     // const name = store.state.user.mc_name, id = store.state.user.mc_id
     const {path,query}=to
-    if(query.msg){
-        Message.info(query.msg)
-
+    if('msg' in query){
+        if(query.msg!=='') Message.info(query.msg)
         await router.replace({path})
     }
     else {

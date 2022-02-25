@@ -8,7 +8,7 @@
         </template>
         <MenuItem name="profile" to="/profile">个人主页</MenuItem>
         <MenuItem :disabled="true" name="more">待开发</MenuItem>
-        <MenuItem name="logout" @click="logout">登出</MenuItem>
+        <MenuItem name="logout">登出</MenuItem>
       </Submenu>
       <Button @click="login" :loading="loading" v-else>登录</Button>
     </span>
@@ -17,7 +17,6 @@
 
 <script>
 import myAvatar from "../components/myAvatar";
-
 export default {
   name: "NavBar",
   components: {myAvatar},
