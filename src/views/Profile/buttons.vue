@@ -2,7 +2,7 @@
   <div>
     <h2>您尚未认证，请选择以下两个方式认证</h2>
     <div class="btn-box">
-      <Button size="large">邮箱认证</Button>
+      <Button size="large" @click="mail">邮箱认证</Button>
     </div>
     <div class="btn-box">
       <Button size="large" @click="injtech" :loading="is_loading">智慧南工统一认证</Button>
@@ -23,7 +23,7 @@ export default {
       this.is_loading = true
       this.$Modal.confirm({
         title: '特别提醒',
-        content: '<p>此操作需要在校园网络下进行，并且请使用自己的智慧南工登录校园网，请确定您的网络状态是否符合条件</p>',
+        content: '<p>此操作需要在校园网络下进行，并且请使用自己的智慧南工登录校园网以及南工在线，请确定您的状态是否符合条件</p>',
         okText: '确定好了',
         cancelText: '我再回去瞅瞅',
         onOk() {

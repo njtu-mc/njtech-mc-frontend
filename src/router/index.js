@@ -8,7 +8,13 @@ const routes = [
     {
         path: '/',
         name: 'home',
-        component: Layout
+        component: Layout,
+        children: [
+            {
+                path: '',
+                component:()=>import('../views/Notification')
+            }
+        ]
     },
     {
         path:'/',

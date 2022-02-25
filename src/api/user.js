@@ -19,3 +19,17 @@ export const changeSex = (gender) => {
         data: gender
     })
 }
+export const getCode = (mail) => {
+    return request({
+        url: '/email',
+        method: 'post',
+        data: mail
+    })
+}
+export const putMail = (data) => {
+    return request({
+        url: '/email',
+        method: 'put',
+        data
+    })
+}
