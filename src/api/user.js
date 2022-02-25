@@ -33,3 +33,10 @@ export const putMail = (data) => {
         data
     })
 }
+export const postInfo = (data) => {
+    return request({
+        url: '/user/authorize',
+        method: 'put',
+        data
+    })
+}

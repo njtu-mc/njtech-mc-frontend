@@ -76,7 +76,7 @@ export default {
     putMail() {
       putMail({mail: this.mail, code: this.code}).then(() => {
         this.$Message.success('修改成功')
-        this.$router.replace('/profile')
+        location.reload()
         Promise.resolve()
       })
           .catch(err => {
