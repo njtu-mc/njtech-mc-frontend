@@ -1,4 +1,5 @@
-import {getInfo, logout} from "../../api/user";
+import {changeSex, getInfo, logout} from "../../api/user";
+import {Message} from "view-design";
 
 const state = {
     mc_id: 0,
@@ -54,7 +55,16 @@ const actions = {
                 commit('SET_GENDER', 0)
                 commit('SET_EMAIL', '')
                 resolve()
-            }).catch(() => reject())
+            }).catch((error) => reject(error))
+        })
+    },
+    changeSex({commit},gender){
+        return new Promise((resolve,reject)=>{
+            changeSex(gender).then(()=>{
+                commit('SET_GENDER',gender.gender)
+                Message.success('变性成功')
+                resolve()
+            }).catch((error)=>{console.log(error);reject(error.response)})
         })
     }
 }

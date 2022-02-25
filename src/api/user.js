@@ -12,3 +12,10 @@ export const logout = () => {
         method: 'get'
     })
 }
+export const changeSex = (gender) => {
+    return request({
+        url: '/user/gender',
+        method: 'put',
+        data: gender
+    })
+}

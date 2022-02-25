@@ -1,7 +1,7 @@
 <template>
   <div class="layout">
     <Layout>
-      <Header>
+      <Header class="header">
         <NavBar></NavBar>
       </Header>
       <Content class="mt-content">
@@ -13,11 +13,12 @@
 </template>
 <style scoped>
 .layout {
+  min-width: 750px;
   background: #f5f7f9;
   position: relative;
-  overflow: hidden;
 }
-
+.header{
+}
 .ivu-layout-header {
   padding-left: 1rem;
   padding-right: 1rem;
