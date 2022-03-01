@@ -1,6 +1,6 @@
 #  南京工业大学 mc 管理系统前台👻 
 
-[![Build Status](https://drone.jinhun.moe/api/badges/NGUAlexZhang/njtech-mc-frontend/status.svg)](https://drone.jinhun.moe/NGUAlexZhang/njtech-mc-frontend)
+[![Build Status](https://drone.jinhun.moe/api/badges/njtu-mc/njtech-mc-frontend/status.svg)](https://drone.jinhun.moe/njtu-mc/njtech-mc-frontend)
 
 ## 前端地址
   - https://njtumc.org
